@@ -7,6 +7,7 @@
             Console.WriteLine("Hello, World!");
             Console.WriteLine("hej");
             Console.WriteLine("Hey hej");
+            Console.WriteLine("Svejs");
         }
     }
 }
