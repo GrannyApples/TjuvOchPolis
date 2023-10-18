@@ -8,7 +8,7 @@ namespace TjuvOPolis
 {
     internal class Helpers
     {
-
+        
         public static void Mover(Citizen citizen)
         {
             Random rnd = new Random();
@@ -67,7 +67,7 @@ namespace TjuvOPolis
             for(int i = 0; i < population; i++)
             {
                 int[] spawn = Citizen.SpawnLocation();
-                Citizen person = new Citizen(spawn[0], spawn[1], "tomt","C");
+                Citizen person = new Citizen("M", spawn[0], spawn[1]);
                 list.Add(person);
             }
             return list;

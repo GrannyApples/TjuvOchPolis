@@ -2,16 +2,18 @@
 {
     public class Person
     {
+        public string Marker { get; set; }
         public int MovementX { get; set; }
         public int MovementY { get; set; }
-        public string Inventory { get; set; }
+        
 
-        public Person(int movementX, int movementY, string inventory)
+        public Person(string marker, int movementX, int movementY)
 
         {
+            Marker = Marker;
             MovementX = movementX;
             MovementY = movementY;
-            Inventory = inventory;
+            
 
         }
         public static int[] SpawnLocation()
@@ -46,10 +48,11 @@
 
     public class Citizen : Person
     {
-        public string Marker { get; set; }
-        public Citizen(int movementX, int movementY, string inventory, string marker) : base(movementX, movementY, inventory)
+        
+        
+        public Citizen(string marker, int movementX, int movementY) : base(marker, movementX, movementY)
         {
-            Marker = marker;           
+                       
         }
 
         
@@ -57,7 +60,7 @@
 
     public class Police : Person
     {
-        public Police(int movementX,  int movementY, string inventory) : base(movementX, movementY, inventory)
+        public Police(string marker, int movementX,  int movementY) : base(marker, movementX, movementY)
         {
 
         }
@@ -65,7 +68,7 @@
 
     public class Criminal : Person
     {
-        public Criminal(int movementX, int movementY, string inventory) : base(movementX, movementY, inventory)
+        public Criminal(string marker,int movementX, int movementY) : base(marker, movementX, movementY)
         {
 
         }

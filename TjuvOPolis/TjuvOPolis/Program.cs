@@ -12,7 +12,7 @@ namespace TjuvOPolis
 
             List<Citizen> citizens = Helpers.FillCitizens(population);
             
-           int[] spawn = Citizen.SpawnLocation();
+            int[] spawn = Citizen.SpawnLocation();
 
             City.CityDrawer(city);
 
