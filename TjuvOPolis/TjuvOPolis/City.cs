@@ -11,8 +11,7 @@ namespace TjuvOPolis
 
         public static void CityDrawer(string[,] city) //List<Citizen> citizens)
         {
-            while (true)
-            { 
+
             for (int x = 0; x < city.GetLength(0); x++)
             {
                 for (int y = 0; y < city.GetLength(1); y++)
@@ -35,10 +34,6 @@ namespace TjuvOPolis
                 Console.WriteLine();
 
             }
-                Thread.Sleep(2000);
-                Console.Clear();
-                
-        }
             //foreach (Person person in citizens)
             //{
             //    if (person is Citizen)

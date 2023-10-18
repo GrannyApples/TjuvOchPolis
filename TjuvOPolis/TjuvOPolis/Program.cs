@@ -8,41 +8,14 @@ namespace TjuvOPolis
         {
 
             string[,] city = new string[25, 100];
-            //int population = 10;
+            int population = 10;
 
-            //List<Citizen> citizens = Helpers.FillCitizens(population);
+            List<Citizen> citizens = Helpers.FillCitizens(population);
             
-            //int[] spawn = Citizen.SpawnLocation();
+           int[] spawn = Citizen.SpawnLocation();
 
-            //City.CityDrawer(city);
-            while (true)
-            {
-                for (int x = 0; x < city.GetLength(0); x++)
-                {
-                    for (int y = 0; y < city.GetLength(1); y++)
-                    {
-                        if (x == 0 || x == 24)
-                        {
-                            Console.Write("-");
-                        }
-                        else if (y == 0 || y == 99)
-                        {
-                            Console.Write("|");
-                        }
-                        else
-                        {
-                            Console.Write(" ");
-                        }
+            City.CityDrawer(city);
 
-
-                    }
-                    Console.WriteLine();
-
-                }
-                Thread.Sleep(2000);
-                Console.Clear();
-
-            }
 
 
 
