@@ -67,7 +67,35 @@ namespace TjuvOPolis
             for(int i = 0; i < population; i++)
             {
                 int[] spawn = Citizen.SpawnLocation();
-                Citizen person = new Citizen("M", spawn[0], spawn[1]);
+                Citizen person = new Citizen(" M ", spawn[0], spawn[1]);
+                list.Add(person);
+            }
+            return list;
+        }
+
+        public static List<Thief> FillThieves(int thiefPopulation)
+        {
+            List<Thief> list = new List<Thief>();
+
+
+            for (int i = 0; i < thiefPopulation; i++)
+            {
+                int[] spawn = Thief.SpawnLocation();
+                Thief person = new Thief(" T ", spawn[0], spawn[1]);
+                list.Add(person);
+            }
+            return list;
+        }
+
+        public static List<Police> FillPolice(int policePopulation)
+        {
+            List<Police> list = new List<Police>();
+
+
+            for (int i = 0; i < policePopulation; i++)
+            {
+                int[] spawn = Police.SpawnLocation();
+                Police person = new Police(" P ", spawn[0], spawn[1]);
                 list.Add(person);
             }
             return list;

@@ -52,7 +52,7 @@
         
         public Citizen(string marker, int movementX, int movementY) : base(marker, movementX, movementY)
         {
-                       
+            Marker = "M";               
         }
 
         
@@ -62,15 +62,15 @@
     {
         public Police(string marker, int movementX,  int movementY) : base(marker, movementX, movementY)
         {
-
+            Marker = "P";
         }
     }
 
-    public class Criminal : Person
+    public class Thief : Person
     {
-        public Criminal(string marker,int movementX, int movementY) : base(marker, movementX, movementY)
+        public Thief(string marker,int movementX, int movementY) : base(marker, movementX, movementY)
         {
-
+            Marker = "T";
         }
     }
 }

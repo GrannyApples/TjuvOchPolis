@@ -9,13 +9,30 @@ namespace TjuvOPolis
 
             string[,] city = new string[25, 100];
             int population = 10;
+            int thiefPopulation = 5;
+            int policePopulation = 5;
 
             List<Citizen> citizens = Helpers.FillCitizens(population);
+            List<Thief> thieves = Helpers.FillThieves(thiefPopulation);
+            List<Police> police = Helpers.FillPolice(policePopulation);
+
+            //int[] spawn = Citizen.SpawnLocation();
+
+
             
-            int[] spawn = Citizen.SpawnLocation();
 
-            City.CityDrawer(city);
+            while (true)
+            {
+                foreach(Citizen person in citizens)
+                {
+                    City.CityDrawer(city, person);
+                    Console.ReadKey();
+                    
+                }
 
+                
+                
+            }
 
 
 
