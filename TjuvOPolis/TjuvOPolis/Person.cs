@@ -10,7 +10,7 @@
         public Person(string marker, int movementX, int movementY)
 
         {
-            Marker = Marker;
+            Marker = marker;
             MovementX = movementX;
             MovementY = movementY;
 
@@ -31,13 +31,13 @@
 
     public class Citizen : Person
     {
+        public List<Inventory> Inventory { get; set; }
 
-        public Citizen(string marker, int movementX, int movementY) : base(marker, movementX, movementY)
+        public Citizen(string marker, int movementX, int movementY, List<Inventory>inventory) : base(marker, movementX, movementY)
         {
             Marker = "M";
+            Inventory = inventory;
         }
-
-
     }
 
     public class Police : Person

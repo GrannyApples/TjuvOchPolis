@@ -43,28 +43,30 @@ namespace TjuvOPolis
         public static List<Person> FillPeople(int population, int numOfPolice, int numOfCriminals)
         {
             List<Person> list = new List<Person>();
+            List<Inventory> inventory = new List<Inventory>();
+            Inventory item1 = new Inventory("Plånbok", "Mobiltelefon", "Nycklar", "Pengar");
+            inventory.Add(item1);
+            //Inventory item2 = new Inventory();
 
             for (int i = 0; i < population; i++)
             {
-                //string[] inv = new string[4] { "Plånbok", "Mobiltelefon", "Nycklar", "Pengar" };
                 int[] spawn = Person.SpawnLocation();
-                list.Add(new Citizen("", spawn[0], spawn[1]));
+                list.Add(new Citizen("", spawn[0], spawn[1], inventory));
             }
             for (int i = 0; i < numOfPolice; i++)
             {
-                string[] inv = new string[4];
                 int[] spawn = Person.SpawnLocation();
                 list.Add(new Police("", spawn[0], spawn[1]));
             }
             for (int i = 0; i < numOfCriminals; i++)
             {
-                string[] inv = new string[4];
                 int[] spawn = Person.SpawnLocation();
                 list.Add(new Thief("", spawn[0], spawn[1]));
             }
             return list;
         }
 
+        public static 
 
 
     }

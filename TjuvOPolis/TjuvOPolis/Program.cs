@@ -19,7 +19,6 @@
                 City.CityDrawer(city, people);
                 Helpers.Mover(people);
                 Thread.Sleep(1000);
-                Console.WriteLine("hej");
                 Console.Clear();
 
 
