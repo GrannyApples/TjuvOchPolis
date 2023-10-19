@@ -8,95 +8,59 @@ namespace TjuvOPolis
 {
     internal class Helpers
     {
-        
-        public static void Mover(Citizen citizen)
+        public static void Mover(List<Person> people)
         {
-            Random rnd = new Random();
-            int moveDirection = rnd.Next(1, 9);
+            foreach (Person person in people)
+            {
+                Random rndX = new Random();
+                Random rndY = new Random();
+                int moveDirectionX = rndX.Next(-1, 1);   //-1, 0, 1
+                int moveDirectionY = rndY.Next(-1, 1);   //-1, 0, 1
 
-            if (moveDirection == 1)
-            {
-                citizen.MovementX--;
-                citizen.MovementY++;
+                person.MovementX = person.MovementX + moveDirectionX;
+                person.MovementY = person.MovementY + moveDirectionY;
 
-            }
-            if (moveDirection == 2)
-            {
-                citizen.MovementY++;
-            }
-            if (moveDirection == 3)
-            {
-                citizen.MovementX++;
-                citizen.MovementY++;
-            }
-            if (moveDirection == 4)
-            {
-                citizen.MovementX--;
-            }
-            if (moveDirection == 5)
-            {
 
+                //Om gubben går utanför arrayen, t.ex. uppåt "taket" vid X = 0 raden, då hamnar den nere vid X = 23. osv.
+                if (person.MovementX == 0)
+                {
+                    person.MovementX = 23;
+                }
+                if (person.MovementX == 24)
+                {
+                    person.MovementX = 1;
+                }
+                if (person.MovementY == 0)
+                {
+                    person.MovementY = 98;
+                }
+                if (person.MovementY == 99)
+                {
+                    person.MovementY = 1;
+                }
             }
-            if (moveDirection == 6)
-            {
-                citizen.MovementX++;
-            }
-            if (moveDirection == 7)
-            {
-                citizen.MovementX--;
-                citizen.MovementY--;
-            }
-            if (moveDirection == 8)
-            {
-                citizen.MovementX--;
-            }
-            if (moveDirection == 9)
-            {
-                citizen.MovementX++;
-                citizen.MovementY--;
-            }
-            
-
-            Console.WriteLine(moveDirection);
         }
-        public static List<Citizen> FillCitizens(int population)
+        public static List<Person> FillPeople(int population, int numOfPolice, int numOfCriminals)
         {
-            List<Citizen> list = new List<Citizen>();
+            List<Person> list = new List<Person>();
 
-            
-            for(int i = 0; i < population; i++)
+            for (int i = 0; i < population; i++)
             {
-                int[] spawn = Citizen.SpawnLocation();
-                Citizen person = new Citizen(" M ", spawn[0], spawn[1]);
-                list.Add(person);
+                //string[] inv = new string[4] { "Plånbok", "Mobiltelefon", "Nycklar", "Pengar" };
+                int[] spawn = Person.SpawnLocation();
+                list.Add(new Citizen("", spawn[0], spawn[1]));
             }
-            return list;
-        }
-
-        public static List<Thief> FillThieves(int thiefPopulation)
-        {
-            List<Thief> list = new List<Thief>();
-
-
-            for (int i = 0; i < thiefPopulation; i++)
+            for (int i = 0; i < numOfPolice; i++)
             {
-                int[] spawn = Thief.SpawnLocation();
-                Thief person = new Thief(" T ", spawn[0], spawn[1]);
-                list.Add(person);
+                string[] inv = new string[4];
+                int[] spawn = Person.SpawnLocation();
+                list.Add(new Police("", spawn[0], spawn[1]));
             }
-            return list;
-        }
-
-        public static List<Police> FillPolice(int policePopulation)
-        {
-            List<Police> list = new List<Police>();
-
-
-            for (int i = 0; i < policePopulation; i++)
+            for (int i = 0; i < numOfCriminals; i++)
             {
-                int[] spawn = Police.SpawnLocation();
-                Police person = new Police(" P ", spawn[0], spawn[1]);
-                list.Add(person);
+                string[] inv = new string[4];
+                int[] spawn = Person.SpawnLocation();
+                list.Add(new Thief("", spawn[0], spawn[1]));
             }
             return list;
         }
