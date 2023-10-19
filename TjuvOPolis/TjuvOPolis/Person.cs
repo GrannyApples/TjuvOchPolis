@@ -31,9 +31,9 @@
 
     public class Citizen : Person
     {
-        public List<Inventory> Inventory { get; set; }
+        public List<string> Inventory { get; set; }
 
-        public Citizen(string marker, int movementX, int movementY, List<Inventory>inventory) : base(marker, movementX, movementY)
+        public Citizen(string marker, int movementX, int movementY, List<string>inventory) : base(marker, movementX, movementY)
         {
             Marker = "M";
             Inventory = inventory;
@@ -42,17 +42,21 @@
 
     public class Police : Person
     {
-        public Police(string marker, int movementX, int movementY) : base(marker, movementX, movementY)
+        public List<string> PoliceInventory { get; set; }
+        public Police(string marker, int movementX, int movementY, List<string> policeInventory) : base(marker, movementX, movementY)
         {
             Marker = "P";
+            PoliceInventory = policeInventory;
         }
     }
 
     public class Thief : Person
     {
-        public Thief(string marker, int movementX, int movementY) : base(marker, movementX, movementY)
+        public List<string> ThiefInventory { get; set; }
+        public Thief(string marker, int movementX, int movementY, List<string> thiefInventory) : base(marker, movementX, movementY)
         {
             Marker = "T";
+            ThiefInventory = thiefInventory;
         }
     }
 }

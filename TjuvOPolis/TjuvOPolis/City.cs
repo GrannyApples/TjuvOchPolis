@@ -8,7 +8,8 @@ namespace TjuvOPolis
 {
     internal class City
     {
-        public static void CityDrawer(string[,] city, List<Person> people)
+        
+            public static void CityDrawer(string[,] city, List<Person> people)
         {
             for (int x = 0; x < city.GetLength(0); x++)
             {
@@ -54,5 +55,19 @@ namespace TjuvOPolis
                 Console.WriteLine();
             }
         }
+
+        //public static void krock(List<Person> people)
+        //{
+        //    for (int i = 0; i < people.Count; i++)
+        //    {
+        //        for (int j = i + 1; j < people.Count; j++)
+        //        {
+        //            if (people[i].MovementX == people[j].MovementX && people[i].MovementY == people[j].MovementY)
+        //            {
+        //                Console.WriteLine("Hallå där");
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
