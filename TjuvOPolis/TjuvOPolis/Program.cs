@@ -8,10 +8,10 @@
             string[,] collisions = new string[25, 100];
             //string[] backpack = 
             int population = 20;
-            int thiefPopulation = 10;
-            int policePopulation =10;
+            int thiefPopulation = 20;
+            int policePopulation =0;
 
-            List<Person> people = Helpers.FillPeople(population, thiefPopulation, policePopulation);
+            List<Person> people = Helpers.FillPeople(population, policePopulation, thiefPopulation);
 
             Person.SpawnLocation();
 
@@ -20,8 +20,9 @@
                 Helpers.Mover(people);
                 collisions = Helpers.Collision(people, population, collisions);
                 City.CityDrawer(city, people, collisions);
-                Array.Clear(collisions, 0, collisions.Length);
                 Thread.Sleep(1100);
+                Array.Clear(collisions, 0, collisions.Length);
+                
                 Console.Clear();
             }
         }

@@ -27,16 +27,7 @@
             movementXY[1] = movementY;
             return movementXY;
         }
-        public static List<string> FillInventory()
-        {
-            List<string> inventory = new List<string>();
-            inventory.Add("Wallet");
-            inventory.Add("Watch");
-            inventory.Add("Keys");
-            inventory.Add("Phone");
-
-            return inventory;
-        }
+        
     }
 
     public class Citizen : Person
