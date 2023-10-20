@@ -4,10 +4,9 @@
     {
         static void Main(string[] args)
         {
-
-
             string[,] city = new string[25, 100];
             string[,] collisions = new string[25, 100];
+            //string[] backpack = 
             int population = 20;
             int thiefPopulation = 10;
             int policePopulation =10;

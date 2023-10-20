@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TjuvOPolis
 {
-    internal class Helpers
+    public class Helpers
     {
         public static int[] Mover(List<Person> people)
         {
@@ -51,13 +51,9 @@ namespace TjuvOPolis
         {
             List<Person> list = new List<Person>();
             
-            //Inventory item1 = new Inventory("Plånbok", "Mobiltelefon", "Nycklar", "Pengar");
-            //inventory.Add(item1);
-            //Inventory item2 = new Inventory();
-
             for (int i = 0; i < population; i++)
             {
-                List<string> inventory = Helpers.FillInventory();
+                List<string> inventory = Person.FillInventory();
                 int[] spawn = Person.SpawnLocation();
                 list.Add(new Citizen("M", spawn[0], spawn[1], inventory));
             }
@@ -76,16 +72,6 @@ namespace TjuvOPolis
             return list;
         }
 
-        public static List<string> FillInventory()
-        {
-            List<string> inventory = new List<string>();
-            inventory.Add("Wallet");
-            inventory.Add("Watch");
-            inventory.Add("Keys");
-            inventory.Add("Phone");
-
-            return inventory;
-        }
         public static string[,] Collision(List<Person> people, int population, string[,] collisions)
         {
             Console.SetCursorPosition(0, 25);
@@ -98,7 +84,16 @@ namespace TjuvOPolis
                         if (people[i].Marker == "M" && people[j].Marker == "T")
                         {
                             collisions[people[i].MovementX, people[i].MovementY] = "TM";
-                            Console.WriteLine("Tjuv och medborgare kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY);
+                            string[] inventory = Inventory.Backpack();
+                            Console.WriteLine("Tjuv och medborgare kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY + " " + inventory);
+
+                            foreach (Person person in people)
+                            {
+                                if (person is Citizen)
+                                {
+                                    Console.WriteLine();
+                                }
+                            }
                         }
                         if (people[i].Marker == "P" && people[j].Marker == "T")
                         {

@@ -15,11 +15,16 @@ namespace TjuvOPolis
 
         public Inventory(string wallet, string phone, string keys, string watch)
         {
-            Wallet = wallet;
-            Phone = phone;
-            Keys = keys;
-            Watch = watch;
+            Wallet = "wallet";
+            Phone = "phone";
+            Keys = "keys";
+            Watch = "watch";
+        }
 
+        public static string[] Backpack()
+        {
+            string[] backpack = new string[]{"wallet", "phone", "keys", "watch"};
+            return backpack;
         }
     }
 }
