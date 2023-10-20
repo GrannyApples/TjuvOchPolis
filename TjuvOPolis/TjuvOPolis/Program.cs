@@ -8,8 +8,8 @@
             string[,] collisions = new string[25, 100];
             //string[] backpack = 
             int population = 20;
-            int thiefPopulation = 20;
-            int policePopulation =0;
+            int thiefPopulation = 10;
+            int policePopulation =30;
 
             List<Person> people = Helpers.FillPeople(population, policePopulation, thiefPopulation);
 
@@ -18,9 +18,10 @@
             while (true)
             {
                 Helpers.Mover(people);
-                collisions = Helpers.Collision(people, population, collisions);
+               
                 City.CityDrawer(city, people, collisions);
-                Thread.Sleep(1100);
+                collisions = Helpers.Collision(people, population, collisions);
+                Thread.Sleep(100);
                 Array.Clear(collisions, 0, collisions.Length);
                 
                 Console.Clear();
