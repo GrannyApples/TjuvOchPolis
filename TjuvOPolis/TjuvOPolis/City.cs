@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TjuvOPolis
+﻿namespace TjuvOPolis
 {
     internal class City
     {
-        
-            public static void CityDrawer(string[,] city, List<Person> people)
+
+        public static void CityDrawer(string[,] city, List<Person> people, string[,] collisions)
         {
             for (int x = 0; x < city.GetLength(0); x++)
             {
@@ -45,15 +39,29 @@ namespace TjuvOPolis
                     city[person.MovementX, person.MovementY] = person.Marker;
                 }
             }
-
+            Console.SetCursorPosition(0, 0);
             for (int x = 0; x < city.GetLength(0); x++)
             {
                 for (int y = 0; y < city.GetLength(1); y++)
                 {
+                    if (collisions[x, y] == "TM")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    if (collisions[x, y] == "TP")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    }
+                    if (collisions[x, y] == "MP")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
                     Console.Write(city[x, y]);
+                    Console.ResetColor();
                 }
                 Console.WriteLine();
             }
+            //Thread.Sleep(1000);
         }
 
         //public static void krock(List<Person> people)

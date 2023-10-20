@@ -86,22 +86,36 @@ namespace TjuvOPolis
 
             return inventory;
         }
-        public static void krock(List<Person> people, int population)
+        public static string[,] Collision(List<Person> people, int population, string[,] collisions)
         {
-            
+            Console.SetCursorPosition(0, 25);
             for (int i = 0; i < people.Count; i++)
             {
                 for (int j = i + 1; j < people.Count; j++)
                 {
                     if (people[i].MovementX == people[j].MovementX && people[i].MovementY == people[j].MovementY)
                     {
-                        Console.WriteLine("Hallå där");
+                        if (people[i].Marker == "M" && people[j].Marker == "T")
+                        {
+                            collisions[people[i].MovementX, people[i].MovementY] = "TM";
+                            Console.WriteLine("Tjuv och medborgare kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY);
+                        }
+                        if (people[i].Marker == "P" && people[j].Marker == "T")
+                        {
+                            collisions[people[i].MovementX, people[i].MovementY] = "TP";
+                            Console.WriteLine("Tjuv och polis kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY);
+                        }
+                        if (people[i].Marker == "M" && people[j].Marker == "P")
+                        {
+                            collisions[people[i].MovementX, people[i].MovementY] = "MP";
+                            Console.WriteLine("Medborgare och polis kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY);
+                        }
+                        //Thread.Sleep(3000);
                     }
                 }
             }
+            return collisions;
         }
-        
-
 
     }
 }
