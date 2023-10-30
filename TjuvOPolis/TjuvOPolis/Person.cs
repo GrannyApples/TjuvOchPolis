@@ -27,6 +27,7 @@
             movementXY[1] = movementY;
             return movementXY;
         }
+
         
     }
 
@@ -43,6 +44,7 @@
 
     public class Police : Person
     {
+        
         public List<string> PoliceInventory { get; set; }
         public Police(string marker, int movementX, int movementY, List<string> policeInventory) : base(marker, movementX, movementY)
         {
@@ -54,10 +56,14 @@
     public class Thief : Person
     {
         public List<string> ThiefInventory { get; set; }
-        public Thief(string marker, int movementX, int movementY, List<string> thiefInventory) : base(marker, movementX, movementY)
+        public bool Detained { get; set; }
+        public Thief(string marker, int movementX, int movementY, List<string> thiefInventory, bool detained) : base(marker, movementX, movementY)
         {
             Marker = "T";
             ThiefInventory = thiefInventory;
+            Detained = detained;
         }
     }
+
+    
 }

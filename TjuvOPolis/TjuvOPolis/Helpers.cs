@@ -1,4 +1,6 @@
-﻿namespace TjuvOPolis
+﻿using System.Drawing;
+
+namespace TjuvOPolis
 {
     public class Helpers
     {
@@ -22,22 +24,48 @@
 
 
                 //Om gubben går utanför arrayen, t.ex. uppåt "taket" vid X = 0 raden, då hamnar den nere vid X = 23. osv.
-                if (person.MovementX == 0)
+                if (person is Thief && ((Thief)person).Detained == true)
                 {
-                    person.MovementX = 23;
+                    if (person.MovementX == 26)
+                    {
+                        person.MovementX = 34;
+                    }
+                    if (person.MovementX == 35)
+                    {
+                        person.MovementX = 27;
+                    }
+                    if (person.MovementY == 0)
+                    {
+                        person.MovementY = 18;
+                    }
+                    if (person.MovementY == 19)
+                    {
+                        person.MovementY = 1;
+                    }
                 }
-                if (person.MovementX == 24)
+
+                else
                 {
-                    person.MovementX = 1;
+                    if (person.MovementX == 0)
+                    {
+                        person.MovementX = 23;
+                    }
+                    if (person.MovementX == 24)
+                    {
+                        person.MovementX = 1;
+                    }
+                    if (person.MovementY == 0)
+                    {
+                        person.MovementY = 98;
+                    }
+                    if (person.MovementY == 99)
+                    {
+                        person.MovementY = 1;
+                    }
                 }
-                if (person.MovementY == 0)
-                {
-                    person.MovementY = 98;
-                }
-                if (person.MovementY == 99)
-                {
-                    person.MovementY = 1;
-                }
+                
+
+                
             }
             return movementXY;
         }
@@ -47,6 +75,7 @@
 
             for (int i = 0; i < population; i++)
             {
+                
                 List<string> inventory = Helpers.FillInventory();
                 int[] spawn = Person.SpawnLocation();
                 list.Add(new Citizen("M", spawn[0], spawn[1], inventory));
@@ -61,7 +90,7 @@
             {
                 List<string> thiefInventory = new List<string>();
                 int[] spawn = Person.SpawnLocation();
-                list.Add(new Thief("T", spawn[0], spawn[1], thiefInventory));
+                list.Add(new Thief("T", spawn[0], spawn[1], thiefInventory, false));
             }
             return list;
         }
@@ -77,21 +106,27 @@
 
             return inventory;
         }
-        public static string[,] Collision(List<Person> people, int population, string[,] collisions)
+        public static string[,] Collision(List<Person> people, string[,] collisions)
         {
-            Console.SetCursorPosition(0, 25);
+            //Console.SetCursorPosition(0, 52);
+            int startPosX = 45;
+            int startPosY = 25;
+            Console.SetCursorPosition(startPosX, startPosY);
+            Console.WriteLine("\t\t======Status=====");
             for (int i = 0; i < people.Count; i++)
             {
                 for (int j = i + 1; j < people.Count; j++)
                 {
                     if (people[i].MovementX == people[j].MovementX && people[i].MovementY == people[j].MovementY)
                     {
+                        Console.SetCursorPosition(startPosX, startPosY + 1);
                         if (people[i].Marker == "M" && people[j].Marker == "T")
                         {
-
+                            
                             collisions[people[i].MovementX, people[i].MovementY] = "TM";
 
                             Console.WriteLine("Tjuv och medborgare kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY);
+                            Console.WriteLine();
                             Random rnd = new Random();
                             int stealIndex = rnd.Next(0, ((Citizen)people[i]).Inventory.Count);
                             
@@ -102,9 +137,11 @@
                             }
                             else
                             {
+                                Console.SetCursorPosition(startPosX, startPosY + 2);
                                 //Lägger till föremål från citizens Index till tjuvens inventory
                                 //Sedan tar bort föremål från citizens Index från inventory
                                 Console.WriteLine("Tjuv #" + j + " har tagit Medborgare #" + i + "'s " + ((Citizen)people[i]).Inventory[stealIndex]);
+                                Console.WriteLine();
                                 ((Thief)people[j]).ThiefInventory.Add(((Citizen)people[i]).Inventory[stealIndex]);
                                 ((Citizen)people[i]).Inventory.RemoveAt(stealIndex);
                             }
@@ -113,37 +150,46 @@
                             Console.WriteLine();
 
                             Thread.Sleep(2000);
+                            
+
 
                         }
                         if (people[i].Marker == "P" && people[j].Marker == "T")
                         {
+                         
                             collisions[people[i].MovementX, people[i].MovementY] = "TP";
                             Console.WriteLine("Tjuv och polis kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY);
+                            Console.WriteLine();
 
                             if (((Thief)people[j]).ThiefInventory.Count > 0)
                             {
-                                Console.WriteLine("Polis #" + i + " har haffat Tjuv # " + j + " och har beslagtagit allt stöldgods och skickat tjuven till fängelset.");
+                                Console.SetCursorPosition(startPosX, startPosY + 2);
+                                Console.WriteLine("Polis #" + i + " har haffat Tjuv # " + j + " och har beslagtagit allt stöldgods. Tjuven är skickad till fängelset.");
+                                Console.WriteLine();
                                 for (int p = 0; p < ((Thief)people[j]).ThiefInventory.Count; p++)
                                 {
                                     ((Police)people[i]).PoliceInventory.Add(((Thief)people[j]).ThiefInventory[p]);
                                     ((Thief)people[j]).ThiefInventory.RemoveAt(p);
                                 }
+                                ((Thief)people[j]).Detained = true;
+                                ((Thief)people[j]).MovementX = 5;
+                                ((Thief)people[j]).MovementY = 5;
                                 Thread.Sleep(2000);
+                               
                             }
-                            else
-                            {
-                                
-                            }
-                            
+                            Console.WriteLine();
+
                         }
                         if (people[i].Marker == "M" && people[j].Marker == "P")
                         {
+                            Console.SetCursorPosition(startPosX, startPosY + 2);
                             collisions[people[i].MovementX, people[i].MovementY] = "MP";
                             Console.WriteLine("Medborgare och polis kolliderar vid: " + people[i].MovementX + "." + people[i].MovementY);
+                            Console.WriteLine();
                         }
 
                     }
-
+                    
                 }
             }
 
