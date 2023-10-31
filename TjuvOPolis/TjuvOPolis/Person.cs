@@ -6,10 +6,10 @@
         public int MovementX { get; set; }
         public int MovementY { get; set; }
 
-
         public Person(string marker, int movementX, int movementY)
 
         {
+
             Marker = marker;
             MovementX = movementX;
             MovementY = movementY;
@@ -17,6 +17,7 @@
         }
         public static int[] SpawnLocation()
         {
+
             Random spawnX = new Random();
             Random spawnY = new Random();
             int movementX = spawnX.Next(1, 24);
@@ -26,18 +27,19 @@
             movementXY[0] = movementX;
             movementXY[1] = movementY;
             return movementXY;
-        }
 
+        }
         
     }
 
     public class Citizen : Person
     {
+
         public List<string> Inventory { get; set; }
 
         public Citizen(string marker, int movementX, int movementY, List<string>inventory) : base(marker, movementX, movementY)
         {
-            Marker = "M";
+            Marker = "C";
             Inventory = inventory;
         }
     }
