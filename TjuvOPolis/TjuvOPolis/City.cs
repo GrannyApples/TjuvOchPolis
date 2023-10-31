@@ -11,7 +11,7 @@
 
             for (int x = 0; x < poorHouse.GetLength(0); x++)
             {
-                
+
                 for (int y = 0; y < poorHouse.GetLength(1); y++)
                 {
                     if (x == 0 || x == poorHouse.GetLength(0) - 1)
@@ -27,14 +27,15 @@
                         poorHouse[x, y] = " ";
                     }
                     Console.Write(poorHouse[x, y]);
-                    
+
                 }
                 Console.WriteLine();
-                
             }
-            
+
+
+
         }
-        public static void PrisonDrawer(string[,] prison, List<Person> people, string[,] collision)
+        public static void PrisonDrawer(string[,] prison, List<Person> prisoners, string[,] collision)
         {
             Console.SetCursorPosition(0, 25);
             Console.WriteLine("\tPrison");
@@ -55,12 +56,28 @@
                     {
                         prison[x, y] = " ";
                     }
+                    
+                }
+                
+            }
+            foreach (Person person in prisoners)
+            {
+
+                prison[person.MovementX, person.MovementY] = "X";
+
+            }
+            for (int x = 0; x < prison.GetLength(0); x++)
+            {
+                for (int y = 0; y < prison.GetLength(1); y++)
+                {
+                    
                     Console.Write(prison[x, y]);
+                    
                 }
                 Console.WriteLine();
             }
 
-            
+
         }
         public static void CityDrawer(string[,] city, List<Person> people, string[,] collisions, string[,] prison)
         {
@@ -82,7 +99,7 @@
                     }
                 }
             }
-            
+
             foreach (Person person in people)
             {
                 if (person is Citizen)
@@ -93,17 +110,12 @@
                 {
                     city[person.MovementX, person.MovementY] = person.Marker;
                 }
-                
-                if(person is Thief && ((Thief)person).Detained == true)
-                {
-                    prison[person.MovementX, person.MovementY] = person.Marker;
-                }
-                else if (person is Thief)
+                if (person is Thief)
                 {
                     city[person.MovementX, person.MovementY] = person.Marker;
                 }
             }
-            
+
             for (int x = 0; x < city.GetLength(0); x++)
             {
                 for (int y = 0; y < city.GetLength(1); y++)
@@ -125,11 +137,11 @@
                 }
                 Console.WriteLine();
             }
-            
+
         }
 
-        
+
     }
 
-   
+
 }

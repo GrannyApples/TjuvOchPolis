@@ -56,12 +56,12 @@
     public class Thief : Person
     {
         public List<string> ThiefInventory { get; set; }
-        public bool Detained { get; set; }
-        public Thief(string marker, int movementX, int movementY, List<string> thiefInventory, bool detained) : base(marker, movementX, movementY)
+        
+        public Thief(string marker, int movementX, int movementY, List<string> thiefInventory) : base(marker, movementX, movementY)
         {
             Marker = "T";
             ThiefInventory = thiefInventory;
-            Detained = detained;
+            
         }
     }
 
