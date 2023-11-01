@@ -11,13 +11,15 @@ namespace TjuvOPolis
             string[,] collisions = new string[25, 100];
             string[,] poorHouse = new string[15, 25];
 
-            int populationCitizen = 1;
-            int populationThief = 2;
-            int populationPolice = 2;
+            int populationCitizen = 100;
+            int populationThief = 100;
+            int populationPolice = 100;
 
             List<Person> people = Helpers.FillPeople(populationCitizen, populationPolice, populationThief);
             List<Person> prisoners = new List<Person>();
             List<Person> poorPeople = new List<Person>();
+            Console.CursorVisible = false;
+
 
             while (true)
             {
@@ -61,22 +63,26 @@ namespace TjuvOPolis
                             break;
                     }
                 }
-               
 
+                
 
                 Helpers.Mover(people, prisoners, poorPeople);
-               
+                
                 City.CityDrawer(city, people, collisions, prison);
                 City.PrisonDrawer(prison, prisoners, collisions);
-                City.PoorHouseDrawer(poorHouse, poorPeople, collisions);  
-                
+                City.PoorHouseDrawer(poorHouse, poorPeople, collisions);
+
+                Array.Clear(collisions, 0, collisions.Length);
+
                 collisions = Helpers.Collision(people, collisions, prisoners, poorPeople);
 
-                Thread.Sleep(100);
-                Array.Clear(collisions, 0, collisions.Length);
+
+                Thread.Sleep(200);
+
                 
+                Console.SetCursorPosition(0, 0);
                 
-                Console.Clear();
+                //Console.Clear();
             }
             
         }

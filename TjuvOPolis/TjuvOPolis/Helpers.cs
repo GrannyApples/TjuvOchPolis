@@ -1,4 +1,6 @@
-﻿namespace TjuvOPolis
+﻿using System.Collections.Generic;
+
+namespace TjuvOPolis
 {
     public class Helpers
     {
@@ -153,7 +155,7 @@
         }
 
 
-        public static List<string> FillInventory()
+        internal static List<string> FillInventory()
         {
             List<string> inventory = new List<string>();
             inventory.Add("wallet");
@@ -164,6 +166,17 @@
             return inventory;
 
         }
+        private static void Clear(int x, int y,int width, int height)
+        {
+            int curTop = Console.CursorTop;
+            int curLeft = Console.CursorLeft;
+            for (; height > 0;)
+            {
+                Console.SetCursorPosition(x, y + --height);
+                Console.Write(new string(' ', width));
+            }
+            Console.SetCursorPosition(curLeft, curTop);
+        }
 
         public static string[,] Collision(List<Person> people, string[,] collisions, List<Person> prisoners, List<Person> poorPeople)
         {
@@ -173,7 +186,7 @@
 
             Console.SetCursorPosition(startPosX, startPosY);
             Console.WriteLine("\t\t======Status=====");
-            Console.SetCursorPosition(startPosX, startPosY + 1);
+            Console.SetCursorPosition(startPosX, 27);
 
             for (int i = 0; i < people.Count; i++)
             {
@@ -216,7 +229,7 @@
 
                             }
                             
-                            Thread.Sleep(1000);
+                            Thread.Sleep(2000);
 
                         }
                         
@@ -224,13 +237,13 @@
                         {
                             Console.SetCursorPosition(startPosX, startPosY++);
                             collisions[people[i].MovementX, people[i].MovementY] = "TP";
-                            Console.WriteLine("Thief and Police collides at: " + people[i].MovementX + "." + people[i].MovementY); 
+                            Console.WriteLine("Thief and Police collides at: " + people[i].MovementX + "." + people[i].MovementY+ "                                  "); 
 
                             if (((Thief)people[j]).ThiefInventory.Count > 0)
                             {
 
                                 Console.SetCursorPosition(startPosX, startPosY++);
-                                Console.WriteLine("Police #" + i + " has caught Thief # " + j + " and taken their stolen items. The thief has been sent to Jail.");
+                                Console.WriteLine("Police #" + i + " has caught Thief # " + j + " and taken their stolen items. The thief has been sent to Jail.\t\t");
                                
                                 for (int p = 0; p < ((Thief)people[j]).ThiefInventory.Count; p++)
                                 {
@@ -243,7 +256,7 @@
                                 prisoners.Add(new Thief("T", 5, 5, ((Thief)people[j]).ThiefInventory));
                                 people.RemoveAt(j);
 
-                                Thread.Sleep(1000);
+                                Thread.Sleep(2000);
 
                             }                            
                         }
@@ -253,12 +266,12 @@
 
                             Console.SetCursorPosition(startPosX, startPosY++);
                             collisions[people[i].MovementX, people[i].MovementY] = "CP";
-                            Console.WriteLine("Citizen and Police collides at: " + people[i].MovementX + "." + people[i].MovementY);
+                            Console.WriteLine("Citizen and Police collides at: " + people[i].MovementX + "." + people[i].MovementY+"\t\t");
 
                             if (((Citizen)people[i]).Inventory.Count <= 0)
                             {
                                 Console.SetCursorPosition(startPosX, startPosY++);
-                                Console.WriteLine("Police #" + j + " has sent Citizen #" + i + " to the poor house.");
+                                Console.WriteLine("Police #" + j + " has sent Citizen #" + i + " to the poor house.\t\t");
                                 
                                 poorPeople.Add(new Citizen("C", 5, 5, ((Citizen)people[i]).Inventory));
                                 
@@ -271,7 +284,7 @@
 
                 }
             }
-
+            Clear(45,26,100,50);
             return collisions;
 
         }
