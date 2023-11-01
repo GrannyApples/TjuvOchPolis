@@ -1,4 +1,6 @@
-﻿namespace TjuvOPolis
+﻿using System.Collections.Generic;
+
+namespace TjuvOPolis
 {
     internal class Program
     {
@@ -19,41 +21,48 @@
 
             while (true)
             {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(intercept: true);
+                    int[] spawn = Person.SpawnLocation();
 
-                //!!!Fungerar ej än!!!
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.C:
 
-                //if (Console.KeyAvailable)
-                //{
-                //    ConsoleKeyInfo key = Console.ReadKey(intercept: true);
+                            List<string> inventory = Helpers.FillInventory();
 
-
-                //    switch (key.Key)
-                //    {
-                //        case ConsoleKey.C:
-                //            int j = 0;
-                //            people.Add(new Citizen("C", 20, 50, ((Citizen)people[j]).Inventory));
-                            
-
-                //            break;
+                            people.Add(new Citizen("M", spawn[0], spawn[1], inventory));
 
 
-                //        case ConsoleKey.P:
-                //            int i = 0;
-                //            people.Add(new Police("P", 15, 30, ((Police)people[i]).PoliceInventory));
+                            break;
 
-                //            break;
 
-                //        case ConsoleKey.T:
-                //            int k = 0;
-                //            people.Add(new Thief("T", 25, 75, ((Thief)people[k]).ThiefInventory));
+                        case ConsoleKey.P:
 
-                //            break;
+                            List<string> policeInventory = new List<string>();
 
-                        
-                //    }
-                //}
-                
-                
+                            people.Add(new Police("P", spawn[0], spawn[1], policeInventory));
+
+
+                            break;
+
+                        case ConsoleKey.T:
+
+
+                            List<string> thiefInventory = new List<string>();
+
+
+                            people.Add(new Thief("T", spawn[0], spawn[1], thiefInventory));
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+               
+
 
                 Helpers.Mover(people, prisoners, poorPeople);
                

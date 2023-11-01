@@ -119,6 +119,7 @@
         {
             List<Person> list = new List<Person>();
 
+
             for (int i = 0; i < numOfCitizen; i++)
             {
 
