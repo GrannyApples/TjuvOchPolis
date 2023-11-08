@@ -2,7 +2,7 @@
 
 namespace TjuvOPolis
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -11,18 +11,19 @@ namespace TjuvOPolis
             string[,] collisions = new string[25, 100];
             string[,] poorHouse = new string[15, 25];
 
-            int populationCitizen = 100;
-            int populationThief = 100;
-            int populationPolice = 100;
+            int populationCitizen = 20;
+            int populationThief = 20;
+            int populationPolice = 20;
 
             List<Person> people = Helpers.FillPeople(populationCitizen, populationPolice, populationThief);
             List<Person> prisoners = new List<Person>();
             List<Person> poorPeople = new List<Person>();
             Console.CursorVisible = false;
-
-
+            
+            Thread.Sleep(2000);
             while (true)
             {
+             
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey(intercept: true);
@@ -35,7 +36,7 @@ namespace TjuvOPolis
                             List<string> inventory = Helpers.FillInventory();
 
                             people.Add(new Citizen("M", spawn[0], spawn[1], inventory));
-
+                            populationCitizen++;
 
                             break;
 
@@ -45,7 +46,7 @@ namespace TjuvOPolis
                             List<string> policeInventory = new List<string>();
 
                             people.Add(new Police("P", spawn[0], spawn[1], policeInventory));
-
+                            populationPolice++;
 
                             break;
 
@@ -56,10 +57,11 @@ namespace TjuvOPolis
 
 
                             people.Add(new Thief("T", spawn[0], spawn[1], thiefInventory));
-
+                            populationThief++;
                             break;
 
                         default:
+
                             break;
                     }
                 }
@@ -71,15 +73,30 @@ namespace TjuvOPolis
                 City.CityDrawer(city, people, collisions, prison);
                 City.PrisonDrawer(prison, prisoners, collisions);
                 City.PoorHouseDrawer(poorHouse, poorPeople, collisions);
-
+                Console.SetCursorPosition(0, 0);
                 Array.Clear(collisions, 0, collisions.Length);
 
                 collisions = Helpers.Collision(people, collisions, prisoners, poorPeople);
-
-
-                Thread.Sleep(200);
-
                 
+                Console.SetCursorPosition(101, 5);
+                Console.WriteLine("Press P to spawn Police");
+                Console.SetCursorPosition(101, 6);
+                Console.WriteLine("Police: " + populationPolice);
+                Console.SetCursorPosition(101, 8);
+                Console.WriteLine("Press C to spawn Citizens");
+                Console.SetCursorPosition(101, 9);
+                Console.WriteLine("Citizens: "+(populationCitizen-poorPeople.Count));
+                Console.SetCursorPosition(101, 11);
+                Console.WriteLine("Press T to spawn Thiefs");
+                Console.SetCursorPosition(101, 12);
+                Console.WriteLine("Thiefs: "+(populationThief-prisoners.Count));
+                Console.SetCursorPosition(0, 0);
+                
+                Console.SetCursorPosition(20, 27);
+                Console.WriteLine("Prisoners: "+(prisoners.Count));
+                
+                Console.SetCursorPosition(25, 46);
+                Console.WriteLine("Poorpeople: "+poorPeople.Count);
                 Console.SetCursorPosition(0, 0);
                 
                 //Console.Clear();

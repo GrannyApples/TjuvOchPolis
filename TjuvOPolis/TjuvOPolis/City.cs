@@ -154,6 +154,7 @@
                     if (collisions[x, y] == "CP")
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
+                        
                     }
 
                     Console.Write(city[x, y]);

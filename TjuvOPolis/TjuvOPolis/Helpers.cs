@@ -252,7 +252,7 @@ namespace TjuvOPolis
                                     ((Thief)people[j]).ThiefInventory.RemoveAt(p);                    
 
                                 }
-
+                               
                                 prisoners.Add(new Thief("T", 5, 5, ((Thief)people[j]).ThiefInventory));
                                 people.RemoveAt(j);
 
@@ -276,15 +276,16 @@ namespace TjuvOPolis
                                 poorPeople.Add(new Citizen("C", 5, 5, ((Citizen)people[i]).Inventory));
                                 
                                 people.RemoveAt(i);
+
                             }
-                           
+                            Thread.Sleep(2000);
                         }
 
                     }
 
                 }
             }
-            Clear(45,26,100,50);
+            Clear(45,26,100,20);
             return collisions;
 
         }
