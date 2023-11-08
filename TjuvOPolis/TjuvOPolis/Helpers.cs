@@ -12,8 +12,8 @@ namespace TjuvOPolis
             {
                 Random rndX = new Random();
                 Random rndY = new Random();
-                int moveDirectionX = rndX.Next(-1, 1);   //-1, 0, 1
-                int moveDirectionY = rndY.Next(-1, 1);   //-1, 0, 1
+                int moveDirectionX = rndX.Next(-1, 2);   //-1, 0, 1
+                int moveDirectionY = rndY.Next(-1, 2);   //-1, 0, 1
 
                 person.MovementX = person.MovementX + moveDirectionX;
                 person.MovementY = person.MovementY + moveDirectionY;
@@ -22,7 +22,7 @@ namespace TjuvOPolis
                 movementXY[0] = person.MovementX;
                 movementXY[1] = person.MovementY;
 
-
+                
                 //Om gubben går utanför arrayen, t.ex. uppåt "taket" vid X = 0 raden, då hamnar den nere vid X = 23. osv.
 
                 if (person.MovementX == 0)
@@ -48,8 +48,8 @@ namespace TjuvOPolis
             {
                 Random rndX = new Random();
                 Random rndY = new Random();
-                int moveDirectionX = rndX.Next(-1, 1);   //-1, 0, 1
-                int moveDirectionY = rndY.Next(-1, 1);   //-1, 0, 1
+                int moveDirectionX = rndX.Next(-1, 2);   //-1, 0, 1
+                int moveDirectionY = rndY.Next(-1, 2);   //-1, 0, 1
 
                 prisoner.MovementX = prisoner.MovementX + moveDirectionX;
                 prisoner.MovementY = prisoner.MovementY + moveDirectionY;
@@ -83,15 +83,15 @@ namespace TjuvOPolis
 
                 Random rndX = new Random();
                 Random rndY = new Random();
-                int moveDirectionX = rndX.Next(-1, 1);   //-1, 0, 1
-                int moveDirectionY = rndY.Next(-1, 1);   //-1, 0, 1
+                int moveDirectionX = rndX.Next(-1, 2);   //-1, 0, 1
+                int moveDirectionY = rndY.Next(-1, 2);   //-1, 0, 1
 
                 poorPerson.MovementX = poorPerson.MovementX + moveDirectionX;
                 poorPerson.MovementY = poorPerson.MovementY + moveDirectionY;
 
                 movementXY[0] = poorPerson.MovementX;
                 movementXY[1] = poorPerson.MovementY;
-
+               
                 //Om gubben går utanför arrayen, t.ex. uppåt "taket" vid X = 0 raden, då hamnar den nere vid X = 23. osv.
 
                 if (poorPerson.MovementX == 0)

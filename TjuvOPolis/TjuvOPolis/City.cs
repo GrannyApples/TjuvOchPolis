@@ -143,22 +143,8 @@
                 for (int y = 0; y < city.GetLength(1); y++)
                 {
 
-                    if (collisions[x, y] == "TC")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-                    if (collisions[x, y] == "TP")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                    }
-                    if (collisions[x, y] == "CP")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        
-                    }
-
                     Console.Write(city[x, y]);
-                    Console.ResetColor();
+                   
                 }
 
                 Console.WriteLine();
