@@ -59,7 +59,9 @@ namespace TjuvOPolis
                             people.Add(new Thief("T", spawn[0], spawn[1], thiefInventory));
                             populationThief++;
                             break;
-
+                        case ConsoleKey.W:
+                            Console.Clear();
+                            break;
                         default:
 
                             break;
