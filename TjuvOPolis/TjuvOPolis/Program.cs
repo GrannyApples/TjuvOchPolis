@@ -11,9 +11,9 @@ namespace TjuvOPolis
             string[,] collisions = new string[25, 100];
             string[,] poorHouse = new string[15, 25];
 
-            int populationCitizen = 1;
-            int populationThief = 1;
-            int populationPolice = 1;
+            int populationCitizen = 10;
+            int populationThief = 10;
+            int populationPolice = 10;
             List<Person> people = Helpers.FillPeople(populationCitizen, populationPolice, populationThief);
             List<Person> prisoners = new List<Person>();
             List<Person> poorPeople = new List<Person>();
@@ -36,7 +36,8 @@ namespace TjuvOPolis
                             List<string> inventory = Helpers.FillInventory();
 
                             people.Add(new Citizen("C", spawn[0], spawn[1], inventory));
-                            populationCitizen++;
+                            populationCitizen+=1;
+                            Helpers.FillPeople(populationCitizen, populationPolice, populationThief);
 
                             break;
 
@@ -46,8 +47,8 @@ namespace TjuvOPolis
                             List<string> policeInventory = new List<string>();
 
                             people.Add(new Police("P", spawn[0], spawn[1], policeInventory));
-                            populationPolice++;
-
+                            populationPolice+=1;
+                            Helpers.FillPeople(populationCitizen, populationPolice, populationThief);
                             break;
 
                         case ConsoleKey.T:
@@ -57,7 +58,8 @@ namespace TjuvOPolis
 
 
                             people.Add(new Thief("T", spawn[0], spawn[1], thiefInventory));
-                            populationThief++;
+                            populationThief+=1;
+                            Helpers.FillPeople(populationCitizen, populationPolice, populationThief);
                             break;
                         case ConsoleKey.W:
                             Console.Clear();
@@ -68,8 +70,8 @@ namespace TjuvOPolis
                     }
                 }
 
-                
 
+                Helpers.FillPeople(populationCitizen, populationPolice, populationThief);
                 Helpers.Mover(people, prisoners, poorPeople);
                 
                 City.CityDrawer(city, people, collisions, prison);

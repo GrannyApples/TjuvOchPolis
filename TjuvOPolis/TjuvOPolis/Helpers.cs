@@ -237,13 +237,13 @@ namespace TjuvOPolis
                         {
                             Console.SetCursorPosition(startPosX, startPosY++);
                             collisions[people[i].MovementX, people[i].MovementY] = "TP";
-                            Console.WriteLine("Thief and Police collides at: " + people[i].MovementX + "." + people[i].MovementY+ "                                  "); 
+                            Console.WriteLine("Thief and Police collides at: " + people[i].MovementX + "." + people[i].MovementY); 
 
                             if (((Thief)people[j]).ThiefInventory.Count > 0)
                             {
 
                                 Console.SetCursorPosition(startPosX, startPosY++);
-                                Console.WriteLine("Police #" + i + " has caught Thief # " + j + " and taken their stolen items. The thief has been sent to Jail.\t\t");
+                                Console.WriteLine("Police #" + i + " has caught Thief # " + j + " and taken their stolen items. The thief has been sent to Jail.");
                                
                                 for (int p = 0; p < ((Thief)people[j]).ThiefInventory.Count; p++)
                                 {
@@ -285,6 +285,7 @@ namespace TjuvOPolis
 
                 }
             }
+            Clear(101, 5, 25, 20);
             Clear(45,26,100,20);
             return collisions;
 
