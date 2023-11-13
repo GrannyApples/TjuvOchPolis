@@ -285,7 +285,7 @@ namespace TjuvOPolis
 
                 }
             }
-            Clear(101, 5, 25, 20);
+            
             Clear(45,26,100,20);
             return collisions;
 
