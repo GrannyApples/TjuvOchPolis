@@ -266,12 +266,12 @@ namespace TjuvOPolis
 
                             Console.SetCursorPosition(startPosX, startPosY++);
                             collisions[people[i].MovementX, people[i].MovementY] = "CP";
-                            Console.WriteLine("Citizen and Police collides at: " + people[i].MovementX + "." + people[i].MovementY+"\t\t");
+                            Console.WriteLine("Citizen and Police collides at: " + people[i].MovementX + "." + people[i].MovementY);
 
                             if (((Citizen)people[i]).Inventory.Count <= 0)
                             {
                                 Console.SetCursorPosition(startPosX, startPosY++);
-                                Console.WriteLine("Police #" + j + " has sent Citizen #" + i + " to the poor house.\t\t");
+                                Console.WriteLine("Police #" + j + " has sent Citizen #" + i + " to the poor house.");
                                 
                                 poorPeople.Add(new Citizen("C", 5, 5, ((Citizen)people[i]).Inventory));
                                 
